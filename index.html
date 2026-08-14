@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Force: Sierra</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="game-shell">
+      <canvas id="game" aria-label="Игра Frontline Overwatch"></canvas>
+      <section id="hud" aria-live="polite">
+        <div class="topbar">
+          <div class="brand"><span>TASK FORCE</span><b>SIERRA</b></div>
+          <div class="objective"><i></i><span id="objective-text">ОЧИСТИТЕ ПОСТ НА ВЫСОТЕ</span></div>
+          <div class="time" id="clock">06:30</div>
+        </div>
+        <div class="left-panel">
+          <div class="callsign">КАПРАЛ <strong>ВОЛКОВ</strong></div>
+          <div class="health"><span>БРОНЯ</span><div><b id="armor"></b></div></div>
+          <div class="health"><span>ЗДОРОВЬЕ</span><div><b id="health"></b></div></div>
+        </div>
+        <div class="squad-panel"><span>ОТРЯД</span><div id="squad"></div></div>
+        <div class="weapon-panel"><div class="weapon-name">M-74 <small>ШТУРМОВАЯ ВИНТОВКА</small></div><div class="ammo"><b id="ammo">30</b><span>/ 180</span></div><div class="fire-mode" id="stance">● СТОЯ</div></div>
+        <div class="minimap-wrap"><canvas id="minimap" width="150" height="150"></canvas><span>N</span></div>
+        <div id="hint">W A S D — движение · мышь — обзор · ЛКМ — огонь · C — пригнуться · R — перезарядка · Esc — пауза</div>
+      </section>
+      <div id="reticle" aria-hidden="true"><i></i></div>
+      <section id="briefing" class="overlay">
+        <div class="briefing-card">
+          <p class="eyebrow">КОМАНДОВАНИЕ ОПЕРАТИВНОЙ ГРУППЫ</p>
+          <h1>СЕКТОР «СЬЕРРА»</h1>
+          <p>Патруль занимает горный блокпост. Работайте на дистанции, держите высоту и захватите радиореле.</p>
+          <div class="controls"><span><b>W A S D</b> движение</span><span><b>ЛКМ</b> огонь</span><span><b>C</b> пригнуться</span></div>
+          <button id="start">НАЧАТЬ ОПЕРАЦИЮ</button>
+          <p id="boot-error" role="alert"></p>
+        </div>
+      </section>
+      <section id="result" class="overlay hidden"><div class="briefing-card"><p class="eyebrow" id="result-tag">ОПЕРАЦИЯ ЗАВЕРШЕНА</p><h1 id="result-title">ПОБЕДА</h1><p id="result-copy"></p><button id="restart">НОВАЯ ОПЕРАЦИЯ</button></div></section>
+      <section id="pause" class="overlay hidden"><div class="briefing-card"><p class="eyebrow">ОПЕРАЦИЯ ПРИОСТАНОВЛЕНА</p><h1>ПАУЗА</h1><p>Сектор сохранён. Проверьте карту и продолжайте, когда будете готовы.</p><button id="resume">ПРОДОЛЖИТЬ</button></div></section>
+    </main>
+    <script>
+      window.addEventListener('error', function (event) {
+        var output = document.getElementById('boot-error');
+        if (output) output.textContent = 'Ошибка запуска: ' + event.message;
+      });
+    </script>
+    <script src="three.min.js"></script>
+    <script src="GLTFLoader.legacy.js"></script>
+    <script src="SkeletonUtils.js"></script>
+    <script src="game3d.js"></script>
+  </body>
+</html>
